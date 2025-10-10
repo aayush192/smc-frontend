@@ -1,15 +1,20 @@
-import React, { useContext, useState} from "react";
+import React, { useContext, useState,useEffect} from "react";
 import {toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom'
 import api from "../api/axios.js";
 import Context from "../context/context.js";
 
 const AddDepartment = () => {
-  const navigate=useNavigate();
+  const Navigate=useNavigate();
   const [name, setName] = useState("");
   const {department, setDepartment} = useContext(Context);
 
-  
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
+
   const handleAdd = async() => {
     if (name.trim() === "") return;
     try{

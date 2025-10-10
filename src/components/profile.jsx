@@ -30,6 +30,12 @@ const StudentProfile = () => {
   const location = useLocation();
  
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
+  
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const id = location.state.id;
@@ -77,6 +83,9 @@ const StudentProfile = () => {
         setSemesters(sems);
         setActiveSemester(Math.min(...Object.keys(sems)));
       } catch (err) {
+        if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+          Navigate('/login');
+        }
         console.error(err.response?.data?.message);
       }
     };

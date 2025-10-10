@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState ,useEffect} from "react";
 import Context from "../context/context";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios.js";
@@ -12,6 +12,12 @@ const AddCourse = () => {
   const [courseName, setCourseName] = useState("");
   const [message, setMessage] = useState("");
 
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 

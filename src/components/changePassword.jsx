@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { toast } from "react-toastify";
 import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 const ChangePassword = () => {
+  const Navigate=useNavigate();
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -11,6 +13,12 @@ const ChangePassword = () => {
     new: false,
     confirm: false,
   });
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
 
   const toggleShow = (field) => {
     setShow({ ...show, [field]: !show[field] });

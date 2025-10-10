@@ -1,8 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState ,useEffect, use} from "react";
 import api from "../api/axios.js";
 import {toast } from "react-toastify";
 import Context from "../context/context.js";
+import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
+  const Navigate=useNavigate();
   const {department}=useContext(Context);
   const [errorMsg,setErrorMsg]=useState();
   const [formData, setFormData] = useState({
@@ -16,6 +18,12 @@ const RegisterForm = () => {
     symbolno: "",
     semester: ""
   });
+
+ useEffect(() => {
+     if (!localStorage.getItem("token")) {
+       Navigate("/login");
+     }
+   }, [Navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,7 +71,9 @@ const RegisterForm = () => {
       }
     }
   }catch(err){
-    
+    if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+      Navigate('/login');
+    }
      toast.error(err.response.data.message); // Show backend message
     console.log(err.response);
     return(

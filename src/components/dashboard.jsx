@@ -16,6 +16,12 @@ const Dashboard = () => {
     const { isOpen } = useContext(uiContext);
    const {course,department}=useContext(Context);
  const Navigate=useNavigate();
+ useEffect(() => {
+  if (!localStorage.getItem("token")) {
+    Navigate("/login");
+  }
+}, [Navigate]);
+
     useEffect(()=>{
        const getTeacher=async()=>{
             try{

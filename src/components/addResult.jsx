@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
@@ -17,6 +17,11 @@ const ResultForm = () => {
   });
  const {department ,course}=useContext(Context);
 
+ useEffect(() => {
+  if (!localStorage.getItem("token")) {
+    Navigate("/login");
+  }
+}, [Navigate]);
   // Handle form input
   const handleChange = (e) => {
     setFormData({

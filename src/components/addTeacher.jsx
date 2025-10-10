@@ -14,6 +14,11 @@ const AddTeacher = () => {
 const {course}=useContext(Context);
   const [message, setMessage] = useState(null);
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
 
   // Handle input change
   const handleChange = (e) => {

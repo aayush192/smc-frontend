@@ -8,6 +8,11 @@ const CoursesPage = () => {
   const {course} = useContext(Context);
   const {isOpen}=useContext(uiContext);
 
+  useEffect(() => {
+      if (!localStorage.getItem("token")) {
+        navigate("/login");
+      }
+    }, [Navigate]);
   return (
     <div className={`min-h-screen bg-gray-50 transition-all duration-300 ${isOpen ? "ml-64" : "ml-20"} p-6`}>
     <div className="min-h-screen bg-gray-100 p-6">

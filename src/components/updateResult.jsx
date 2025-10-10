@@ -1,4 +1,4 @@
-import React, { useState ,useContext} from "react";
+import React, { useState ,useContext,useEffect} from "react";
 import Context from "../context/context";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,12 @@ const UpdateResult = () => {
     course: "",
     grade: "",
   });
+
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });

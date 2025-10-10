@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import api from "../api/axios"; // your axios instance
 import Context from "../context/context";
+import { useNavigate } from "react-router-dom";
 import { Building2 } from "lucide-react"; // icon for department
 import uiContext from "../context/uiContext";
 
 const Departments = () => {
+  const Navigate=useNavigate();
   const [departments, setDepartments] = useState([]);
   const { department } = useContext(Context);
   const [loading, setLoading] = useState(false);
@@ -12,11 +14,20 @@ const Departments = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+      if (!localStorage.getItem("token")) {
+        Navigate("/login");
+      }
+    }, [Navigate]);
+
+  useEffect(() => {
     const fetchDepartments = async () => {
       try {
         setLoading(true);
         setDepartments(department);
       } catch (err) {
+        if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+          Navigate('/login');
+        }
         setError("Failed to load departments.");
       } finally {
         setLoading(false);

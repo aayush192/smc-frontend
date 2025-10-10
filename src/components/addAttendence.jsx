@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState ,useEffect} from "react";
 import Context from "../context/context.js";
 import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
@@ -13,7 +13,11 @@ const Attendance = () => {
   const [students, setStudents] = useState([]);
   const [attendance, setAttendance] = useState([]);
   
-  if(!localStorage.getItem('token')) Navigate('/login');
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
   // Fetch students with try/catch
   const handleFetchStudents = async () => {
 

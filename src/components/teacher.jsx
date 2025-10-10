@@ -12,6 +12,12 @@ const {isOpen}=useContext(uiContext);
   const [teachers, setTeachers] = useState([]);
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
+
+  useEffect(() => {
     const getTeachers = async () => {
       try {
         const response = await api.get(`/teacher/${id}`);

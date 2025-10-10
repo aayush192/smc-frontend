@@ -14,6 +14,12 @@ const StudentsByDepartment = () => {
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState(""); // frontend search
 
+  useEffect(() => {
+    if (!localStorage.getItem("token")) {
+      Navigate("/login");
+    }
+  }, [Navigate]);
+
   const fetchData = async (currentPage = 1) => {
     setLoading(true);
     try {
@@ -27,6 +33,7 @@ const StudentsByDepartment = () => {
       }
     } catch (err) {
       console.error(err);
+      
     } finally {
       setLoading(false);
     }
