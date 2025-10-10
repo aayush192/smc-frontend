@@ -1,18 +1,22 @@
 import React, { useContext, useState } from "react";
 import Context from "../context/context.js";
+import { useNavigate } from "react-router-dom";
 import {toast} from 'react-toastify';
 import api from "../api/axios.js";
 
 const Attendance = () => {
+  const Navigate=useNavigate();
   const { department ,course} = useContext(Context);
   const [departmentName, setDepartmentName] = useState("");
   const [courseTitle, setCourseTitle] = useState("");
   const [semester, setSemester] = useState("");
   const [students, setStudents] = useState([]);
   const [attendance, setAttendance] = useState([]);
-
+  
+  if(!localStorage.getItem('token')) Navigate('/login');
   // Fetch students with try/catch
   const handleFetchStudents = async () => {
+
     if (!departmentName || !semester || !courseTitle) return toast.error("Select department and semester");
 
     try {
@@ -33,6 +37,9 @@ const Attendance = () => {
       setAttendance([]); // Reset attendance when fetching new students
     } catch (err) {
       console.error("Error fetching students:", err.response.data.message);
+      if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+        Navigate('/login');
+      }
       toast.error( err.response.data.message);
       
     }

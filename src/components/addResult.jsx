@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import Context from "../context/context.js";
 import {toast } from "react-toastify";
 import api from "../api/axios.js";
 
 const ResultForm = () => {
+  const Navigate=useNavigate();
   const [formData, setFormData] = useState({
     symbolno: "",
     departmentName:"",
@@ -34,6 +36,9 @@ const ResultForm = () => {
       } // reset
     } catch (err) {
      toast.error(err.response.data.message)
+     if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+      Navigate('/login');
+    }
     }
   };
 

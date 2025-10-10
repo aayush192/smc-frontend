@@ -2,8 +2,9 @@ import React, { useState, useEffect,useContext } from "react";
 import Context from "../context/context.js";
 import {toast } from "react-toastify";
 import api from "../api/axios.js";
-
+import { useNavigate } from "react-router-dom";
 const AddTeacher = () => {
+  const Navigate=useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -51,6 +52,9 @@ const {course}=useContext(Context);
       }
     } catch (err) {
       toast.error(err.response.data.message);
+      if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+        Navigate('/login');
+      }
     }
   };
 

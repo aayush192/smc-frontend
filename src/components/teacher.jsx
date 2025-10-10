@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
 import uiContext from "../context/uiContext";
 
 const TeachersPage = () => {
+  const Navigate=useNavigate();
   const location = useLocation();
   const id = location.state.id;
 const {isOpen}=useContext(uiContext);
@@ -18,6 +20,9 @@ const {isOpen}=useContext(uiContext);
         }
       } catch (err) {
         console.error("Failed to fetch teachers:", err);
+        if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+          Navigate('/login');
+        }
       }
     };
 

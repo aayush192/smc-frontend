@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import Context from "../context/context";
+import { useNavigate } from "react-router-dom";
 import api from "../api/axios.js";
 import { toast } from "react-toastify";
 
 const AddCourse = () => {
+  const Navigate=useNavigate();
   const { department } = useContext(Context); // Assuming department is an array of objects
   const [departmentName, setDepartmentName] = useState("");
   const [semester, setSemester] = useState("");
@@ -34,6 +36,9 @@ const AddCourse = () => {
       }
     } catch (err) {
       console.error("Error adding course:", err);
+      if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+        Navigate('/login');
+      }
       setMessage("Something went wrong. Check console.");
     }
   };

@@ -1,8 +1,10 @@
 import React, { useState ,useContext} from "react";
 import Context from "../context/context";
 import api from "../api/axios";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const UpdateResult = () => {
+    const Navigate=useNavigate();
     const {course}=useContext(Context);
   const [formData, setFormData] = useState({
     semester: "",
@@ -24,6 +26,9 @@ const UpdateResult = () => {
     }
    } catch (err) {
     toast.error(err.response.data.message);
+    if(err.response.data.message=='token is not valid'|| err.response.data.message=='user is not valid'){
+        Navigate('/login');
+      }
    }
   };
 
