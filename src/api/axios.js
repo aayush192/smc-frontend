@@ -2,7 +2,7 @@ import axios from "axios";
 
 // Create an axios instance with default settings
 const api = axios.create({
-  baseURL: "http://localhost:8000", // your backend base URL
+  baseURL: "https://smc-backend-wiqx.onrender.com", // your backend base URL
   withCredentials: true, // if you use cookies for auth
 });
 
