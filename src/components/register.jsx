@@ -142,6 +142,7 @@ const RegisterForm = () => {
           <select
             className="border border-gray-300 rounded-lg p-3 w-full focus:ring focus:ring-blue-200"
             value={formData.departmentName}
+            name='departmentName'
             onChange={handleChange}
           >
             <option value="">-- Select Department --</option>
