@@ -4,13 +4,13 @@ import uiContext from "../context/uiContext";
 import { useNavigate } from "react-router-dom";
 
 const CoursesPage = () => {
-  const navigate=useNavigate();
+  const Navigate=useNavigate();
   const {course} = useContext(Context);
   const {isOpen}=useContext(uiContext);
 
   useEffect(() => {
       if (!localStorage.getItem("token")) {
-        navigate("/login");
+        Navigate("/login");
       }
     }, [Navigate]);
   return (
@@ -24,7 +24,7 @@ const CoursesPage = () => {
             key={crs.id} 
             className="bg-white rounded-xl shadow-md p-4 text-center font-medium hover:shadow-lg transition"
            onClick={()=>{
-            navigate('/teacher',{state:{id:crs.id}})
+            Navigate('/teacher',{state:{id:crs.id}})
            }}>
             {crs.courseTitle}
           </div>
