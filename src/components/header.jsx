@@ -34,13 +34,19 @@ const Sidebar = () => {
     ],
   };
 
+  useEffect(() => {
+  const handleResize = () => setIsOpen(!(window.innerWidth < 768)); // md breakpoint
+  handleResize(); // check on mount
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+  
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
 
   return (
-   <div className={`h-screen bg-blue-600 text-white fixed top-0 left-0 transition-all duration-300 shadow-lg 
-        ${isOpen ? "w-64" : "w-20"} flex-col justify-between`}>
+   <div className={h-screen bg-blue-600 text-white fixed top-0 left-0 transition-all duration-300 shadow-lg ${isOpen ? "w-64" : "w-20"} flex flex-col justify-between} >
 
       {/* Sidebar Top (Header + Menus) */}
       <div>
