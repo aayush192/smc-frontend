@@ -17,7 +17,7 @@ const UpdateResult = () => {
     if (!localStorage.getItem("token")) {
       Navigate("/login");
     }
-  }, [navigate]);
+  }, [Navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
