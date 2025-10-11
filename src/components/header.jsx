@@ -109,7 +109,7 @@ const Sidebar = () => {
               {openMenu === "add" && isOpen && (
                 <ul className="ml-10 mt-1 space-y-1">
                   {menus.add.map((item) => (
-                   (userData.role=='admin' && item.label=='Department') || (userData.role=='admin' && item.label=='Course') || (userData.role=='admin' && item.label=='teacher') || (userData.role=='deptadmin' && item.label=='Department') ? 
+                   (userData.role=='admin' && item.label=='Department') || (userData.role=='admin' && item.label=='Course') || (userData.role=='admin' && item.label=='Teacher') || (userData.role=='deptadmin' && item.label=='Department') ? 
                   null
                   :(<li
                       key={item.label}
