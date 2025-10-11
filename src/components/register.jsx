@@ -3,8 +3,11 @@ import api from "../api/axios.js";
 import {toast } from "react-toastify";
 import Context from "../context/context.js";
 import { useNavigate } from "react-router-dom";
+import uiContext from "../context/uiContext";
+
 const RegisterForm = () => {
   const Navigate=useNavigate();
+  const { isOpen } = useContext(uiContext);
   const {department}=useContext(Context);
   const [errorMsg,setErrorMsg]=useState();
   const [formData, setFormData] = useState({
@@ -85,6 +88,11 @@ const RegisterForm = () => {
   };
 
   return (
+    <div
+      className={`min-h-screen bg-gray-50 transition-all duration-300 ${
+        isOpen ? "ml-64" : "ml-20"
+      } p-6`}
+    >
     <div className="max-w-3xl mx-auto mt-10 bg-white shadow-lg rounded-xl p-8">
       <h2 className="text-2xl font-bold text-center mb-6">Register User</h2>
 
@@ -209,6 +217,7 @@ const RegisterForm = () => {
         </button>
       </form>
     </div>
+      </div>
   );
 };
 
