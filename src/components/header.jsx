@@ -46,7 +46,7 @@ const Sidebar = () => {
   };
 
   return (
-   <div className={h-screen bg-blue-600 text-white fixed top-0 left-0 transition-all duration-300 shadow-lg ${isOpen ? "w-64" : "w-20"} flex flex-col justify-between} >
+   <div className={`h-screen bg-blue-600 text-white fixed top-0 left-0 transition-all duration-300 shadow-lg ${isOpen ? "w-64" : "w-20"} flex flex-col justify-between`} >
 
       {/* Sidebar Top (Header + Menus) */}
       <div>
