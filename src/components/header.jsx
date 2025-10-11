@@ -86,7 +86,7 @@ const Sidebar = () => {
           </li>
 
          
-          {userData.role!=='student'&&<li
+          {userData.role!=='student'&& userData.role!=='admin'&&<li
             className="flex items-center gap-3 px-4 py-2 hover:bg-blue-500 rounded-lg cursor-pointer"
             onClick={() => navigate("/register")}
           >
