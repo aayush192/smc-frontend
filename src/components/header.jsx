@@ -39,7 +39,7 @@ const Sidebar = () => {
   };
 
   return (
-   <div className={`hidden md:flex h-screen bg-blue-600 text-white fixed top-0 left-0 transition-all duration-300 shadow-lg 
+   <div className={`bg-blue-600 text-white fixed top-0 left-0 transition-all duration-300 shadow-lg 
         ${isOpen ? "w-64" : "w-20"} flex-col justify-between`}>
 
       {/* Sidebar Top (Header + Menus) */}
