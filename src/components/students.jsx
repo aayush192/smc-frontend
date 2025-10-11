@@ -4,7 +4,7 @@ import uiContext from "../context/uiContext.js";
 import { useNavigate } from "react-router-dom";
 
 const StudentsByDepartment = () => {
-  const navigate=useNavigate();
+  const Navigate=useNavigate();
   const { isOpen } = useContext(uiContext);
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -168,7 +168,7 @@ const StudentsByDepartment = () => {
                             <button
                               onClick={() =>{
                                 {console.log(student.id)}
-                                navigate('/profile',{state:{id:student.user.id}})
+                                Navigate('/profile',{state:{id:student.user.id}})
                               }}
                               className="px-4 py-2 bg-indigo-600 text-white rounded-full text-sm font-semibold hover:bg-indigo-700 transition-colors duration-200"
                             >
