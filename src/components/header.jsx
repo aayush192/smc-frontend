@@ -109,13 +109,15 @@ const Sidebar = () => {
               {openMenu === "add" && isOpen && (
                 <ul className="ml-10 mt-1 space-y-1">
                   {menus.add.map((item) => (
-                    <li
+                   (userData.role=='admin' && item.lebel=='Department') || (userData.role=='admin' && item.lebel=='Course') || (userData.role=='admin' && item.lebel=='teacher') || (userData.role=='deptadmin' && item.lebel=='Department') ? 
+                  null
+                  :(<li
                       key={item.label}
                       className="px-3 py-1 text-sm rounded-lg hover:bg-blue-500 cursor-pointer"
                       onClick={() => navigate(item.path)}
                     >
                       {item.label}
-                    </li>
+                    </li>)
                   ))}
                 </ul>
               )}
