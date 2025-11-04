@@ -71,7 +71,9 @@ const StudentProfile = () => {
         });
 
         Object.entries(data.attendanceSummary).forEach(([subject, att]) => {
-          const sem = data.marksResponse.find((m) => m.course.courseTitle === subject)?.semester || 1;
+         let sem = data.marksResponse.find((m) => m.course.courseTitle === subject)?.semester ||
+  data.courses[0].courses.find((c) => c.courseTitle === subject)?.deptCourses.semester ||
+  1;
           if (!sems[sem]) sems[sem] = { courses: [], results: [], attendance: [] };
           sems[sem].attendance.push({
             subject,
